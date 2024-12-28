@@ -2,12 +2,10 @@
 
 [![Zig](https://img.shields.io/badge/Made%20with-Zig-%23F7A41D)](https://ziglang.org)
 
-A powerful hexdump utility built with Zig that helps you inspect binary content in a human-readable format. Perfect for developers who need to understand the underlying structure of files.
+Project to give an introduction and start learning Zig for a university course. A hexdump utility built with Zig that helps you inspect binary content in a human-readable format.
 
 ## Features
 
-- Clean and intuitive hex dump output
-- Fast performance with Zig's efficiency
 - Cross-platform support (Windows, Linux, macOS)
 - Flexible display options and number formats
 - Pattern highlighting capabilities
