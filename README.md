@@ -9,7 +9,9 @@ A powerful hexdump utility built with Zig that helps you inspect binary content 
 - Clean and intuitive hex dump output
 - Fast performance with Zig's efficiency
 - Cross-platform support (Windows, Linux, macOS)
-- Simple command-line interface
+- Flexible display options and number formats
+- Pattern highlighting capabilities
+- Customizable output formatting
 
 ## Prerequisites
 
@@ -47,28 +49,85 @@ zig build
 ### Basic Command
 
 ```bash
-zzd <filename>
+zzd <filename> [options]
 ```
 
-### Platform-Specific Examples
+### Platform-Specific Paths
 
 #### Windows
 ```bash
-zig-out\bin\zzd sequence.bin
+zig-out\bin\zzd <filename> [options]
 ```
 
 #### Linux/macOS
 ```bash
-zig-out/bin/zzd sequence.bin
+zig-out/bin/zzd <filename> [options]
 ```
 
-### Example
+### Command-Line Options
 
-To analyze a binary sequence file:
+#### Display Options
+```
+--line-length=<n>   Set the number of bytes per line (default: 16, max: 64)
+--group=<n>         Group bytes in sets of n (default: 1)
+--no-ascii          Don't display ASCII representation
+--no-offset         Don't display offset column
+--color=<n>         Set color display mode
+```
+
+#### Number Format Options
+```
+(default: hex)      Display numbers in hexadecimal
+--decimal           Display numbers in decimal
+--octal             Display numbers in octal
+--binary            Display numbers in binary
+```
+
+#### Data Selection
+```
+--limit=<n>         Limit the number of bytes displayed
+--skip=<n>          Skip first n bytes of input
+```
+
+#### Pattern Matching
+```
+--highlight=<hex>   Highlight specific byte sequences (can be used multiple times)
+```
+
+### Examples
+
+#### Basic File Analysis
 ```bash
-# Generate a sample binary file using the provided script
-python generate_binary.dat.py
-
-# Analyze the generated file
+# Display a file in default hexadecimal format
 zzd sequence.bin
+zig-out\bin\zzd zzd sequence.bin
+zig-out/bin/zzd zzd sequence.bin
+
+# Display with custom line length and grouping
+zzd sequence.bin --line-length=32 --group=4
+zig-out\bin\zzd zzd sequence.bin --line-length=32 --group=4
+zig-out/bin/zzd zzd sequence.bin --line-length=32 --group=4
+
+# Show only decimal values without ASCII
+zzd sequence.bin --decimal --no-ascii
+zig-out\bin\zzd zzd sequence.bin --decimal --no-ascii
+zig-out/bin/zzd zzd sequence.bin --decimal --no-ascii
+```
+
+#### Advanced Usage
+```bash
+# Skip first 100 bytes and limit output to 500 bytes
+zzd large_file.bin --skip=100 --limit=500
+zig-out\bin\zzd zzd large_file.bin --skip=100 --limit=500
+zig-out/bin/zzd zzd large_file.bin --skip=100 --limit=500
+
+# Highlight specific byte patterns
+zzd firmware.bin --highlight=FF00 --highlight=A5
+zig-out\bin\zzd zzd firmware.bin --highlight=FF00 --highlight=A5
+zig-out/bin/zzd zzd firmware.bin --highlight=FF00 --highlight=A5
+
+# Custom formatting with binary output
+zzd data.bin --binary --line-length=8 --group=4
+zig-out\bin\zzd zzd data.bin --binary --line-length=8 --group=4
+zig-out/bin/zzd zzd data.bin --binary --line-length=8 --group=4
 ```
