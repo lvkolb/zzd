@@ -129,3 +129,5 @@ zzd data.bin --binary --line-length=8 --group=4
 zig-out\bin\zzd zzd data.bin --binary --line-length=8 --group=4
 zig-out/bin/zzd zzd data.bin --binary --line-length=8 --group=4
 ```
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
